@@ -1,0 +1,5 @@
+plotly==6.5.0
+kaleido
+pandas
+numpy
+wandb==0.19.8
