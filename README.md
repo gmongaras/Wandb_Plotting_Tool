@@ -1,4 +1,6 @@
-This is just a basic tool that I will use to plot some of my experiements with. The main interface is in plot and is called `plot_metrics_and_runs`. This function takes in a list of metrics to graph and a list of runs to put on each graph. and does so via a list of `Metric` and `Run` objects. An example is shown in main. Feel free to edit this however and make it better. Below is an example image. I was trying to product something similar to wandb:
+This is just a basic tool that I will use to plot some of my experiements with. Too many times when writing a paper, I have to regenerate the graphs for whatever reason. Now if I just keep the configs for the generated graphs, it should be an easy edit to regenerate all graphs I need to edit instead of going through a painful process of editting everything.
+
+The main interface is in `plot.py` and is called `plot_metrics_and_runs`. This function takes in a list of metrics to graph and a list of runs to put on each graph and does so via a list of `Metric` and `Run` objects. An example is shown in main. Also note that ids can (and probably should be) used instead of run names. Feel free to edit this however and make it better. Below is an example image. I was trying to produce something similar to wandb:
 
 <img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/e323b144-43b5-4b2a-9e29-2ced90423c43" />
 
