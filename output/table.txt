@@ -1,0 +1,10 @@
+\begin{center}
+\begin{tabular}{l|ll}
+  \toprule
+  Model & train loss & test loss\\
+  \midrule
+  Softmax & \textbf{2.85} & \textbf{2.76} \\
+  Mamba & 2.87 & 2.9 \\
+  \bottomrule
+\end{tabular}
+\end{center}
