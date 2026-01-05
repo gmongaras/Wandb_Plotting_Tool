@@ -115,7 +115,7 @@ def plot_metrics_and_runs(
         remap_indices.append(run_idx)
         
         # The run names are really annoying with padding. To artificially pad them, I'm gonna add spaces
-        run_name_plot = run_name_plot + " "*(len(run_name_plot)//2)
+        run_name_plot = run_name_plot + " "
         
         # Extract all the data for a specific set of metrics
         history = pd.DataFrame([i for i in project_run.scan_history(page_size=last_step_num)])
@@ -180,19 +180,22 @@ def plot_metrics_and_runs(
             title=dict(
                 text=title,
                 x=0.5,
-                y=0.96, # Position the title near the top
+                y=0.97, # Position the title near the top
                 xanchor="center",
                 yanchor="top",
                 font_color="rgb(0, 0, 0)",
-                font_size=25,
+                font_size=35,
+                font_weight="bold"
             ),
             legend=dict(
                 yanchor="top",
-                y=0.99,
+                y=0.95,
                 xanchor="right",
                 x=0.99,
-                font_size=15,
+                font_size=20,
+                font_color="#000000",
                 itemwidth=60,
+                font_weight="bold"
             ),
             # Remove verticle lines
             xaxis=dict(
@@ -203,7 +206,9 @@ def plot_metrics_and_runs(
                 color="DarkGrey",
                 linewidth=2,
                 ticks="outside",
-                tickfont_color="#2a3f5f",
+                tickfont_color="#000000",
+                tickfont_size=15,
+                tickfont_weight="bold",
             ),
             # Show horizontal lines
             yaxis=dict(
@@ -215,18 +220,22 @@ def plot_metrics_and_runs(
                 color="DarkGrey",
                 linewidth=2,
                 ticks="outside",
-                tickfont_color="#2a3f5f",
+                tickfont_color="#000000",
+                tickfont_size=15,
+                tickfont_weight="bold",
             ),
             # White background
             paper_bgcolor='rgb(255, 255, 255)',
             plot_bgcolor='rgb(255, 255, 255)',
             # Margin
-            margin=dict(l=70, r=30, t=50, b=60, pad=4),
+            margin=dict(l=75, r=30, t=25, b=70, pad=4),
             overwrite=True,
         )
         
         # Size of the axes
-        fig.update_annotations(font_size=20)
+        fig.update_annotations(font_size=30)
+        fig.update_annotations(font_color="#000000")
+        fig.update_annotations(font_weight="bold")
         
         if not os.path.exists(dir_):
             os.makedirs(dir_)
@@ -237,7 +246,7 @@ def plot_metrics_and_runs(
         num_metrics = len(metrics)
 
         # Create table
-        table_str = "\\begin{center}\n\\begin{tabular}{" +\
+        table_str = "\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{" +\
                 f"l|{'l'*num_metrics}" +\
                 "}\n  \\toprule\n  Model & " +\
                 f"{' & '.join([m.metric_name_plot for m in metrics])}" +\
@@ -262,7 +271,7 @@ def plot_metrics_and_runs(
             table_str += str_
         
         # Add final part of the table string
-        table_str += "  \\bottomrule\n\\end{tabular}\n\\end{center}"
+        table_str += "  \\bottomrule\n\\end{tabular}\n\\vspace{0.25em}\n\\caption{}\n\\label{}\n\\end{table}"
 
         with open(os.path.join(dir_, table_info.table_filename), "w") as table_file:
             table_file.write(table_str)
