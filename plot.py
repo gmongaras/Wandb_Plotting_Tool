@@ -130,7 +130,7 @@ def plot_metrics_and_runs(
             figs[var].append(
                 go.Scatter(
                     x=data_["_step"],
-                    y=transform(data_[var]),
+                    y=data_[var].apply(transform),
                     name=run_name_plot,
                     marker=dict(
                         color=run_color,
