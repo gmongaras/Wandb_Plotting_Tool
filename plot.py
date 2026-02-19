@@ -239,7 +239,10 @@ def plot_metrics_and_runs(
         
         if not os.path.exists(dir_):
             os.makedirs(dir_)
-        fig.write_image(os.path.join(dir_, filename))
+        if "png" in filename or "jpg" in filename:
+            fig.write_image(os.path.join(dir_, filename), scale=4)
+        else:
+            fig.write_image(os.path.join(dir_, filename))
 
     if table_info is not None:
         num_models = len(run_metrics[metrics[0].metric_name])
