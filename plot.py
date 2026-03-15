@@ -65,7 +65,9 @@ def plot_metrics_and_runs(
         # Put axis names?
         plot_axis_names: bool = True,
         # If None, A table will not be added, otherwise a latex table will be created
-        table_info: TableInfo = None
+        table_info: TableInfo = None,
+        # True to pad run names with spaces. False to not
+        space_pad_run_names: bool = True,
     ):
     
     # All run names we want to plot
@@ -115,7 +117,8 @@ def plot_metrics_and_runs(
         remap_indices.append(run_idx)
         
         # The run names are really annoying with padding. To artificially pad them, I'm gonna add spaces
-        run_name_plot = run_name_plot + " "
+        space_mult = int(0.5*len(run_name_plot)) if space_pad_run_names else 1
+        run_name_plot = run_name_plot + " "*space_mult
         
         # Extract all the data for a specific set of metrics
         history = pd.DataFrame([i for i in project_run.scan_history(page_size=last_step_num)])
